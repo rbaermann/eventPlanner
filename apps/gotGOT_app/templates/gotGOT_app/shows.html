@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        {% load static %}
+        <link rel='stylesheet' href='{% static "gotGOT_app/css/shows.css" %}'>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1 class="title">Got GOT?</h1>
+            <a href='/dashboard'>Dashboard</a>
+            <a href='/shows'>Upcoming Shows</a>
+            <a href='/logout'>Logout</a>
+            <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>When</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in event %}
+                        <tr>
+                            <th>{{ e.title }}</th>
+                            <th>{{ e.location }}</th>
+                            <th>{{ e.time }}</th>
+                            <th><a href='/movies/{{ e.id }}'>View</a></th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </body>
+</html>

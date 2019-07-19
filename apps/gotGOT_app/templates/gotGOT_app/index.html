@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login & Registration</title>
+        {% load static %}
+        <link rel='stylesheet' href='{% static "gotGOT_app/css/style.css" %}'>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="reg">
+                <form action='/reg' method='POST'>
+                    {% csrf_token %}
+                    <h1>Registration</h1>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <h3>First Name</h3>
+                    <input type='text' name='first_name'>
+                    <h3>Last Name</h3>
+                    <input type='text' name='last_name'>
+                    <h3>Email</h3>
+                    <input type='email' name='email'>
+                    <h3>Password</h3>
+                    <input type='password' name='password'>
+                    <h3>Confirm Password</h3>
+                    <input type='password' name='confirm'><br>
+                    <input type='submit' value='Register'>
+                </form>
+            </div>
+            <div class="login">
+                <form action='/login' method='POST'>
+                    {% csrf_token %}
+                    <h1>Login</h1>
+                    <h3>Email</h3>
+                    <input type='text' name='email'>
+                    <h3>Password</h3>
+                    <input type='password' name='password'><br>
+                    <input type='submit' value='Login'>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        {% load static %}
+        <link rel='stylesheet' href='{% static "gotGOT_app/css/dashboard.css" %}'>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1 class="title">Got GOT?</h1>
+            <a href='/dashboard'>Dashboard</a>
+            <a href='/shows'>Upcoming Shows</a>
+            <a href='/logout'>Logout</a>
+            <h1>Stats</h1>
+            <div class="stats">
+                <h4>Name: {{ user.first_name }} {{ user.last_name }} </h4>
+                <h4># of Events Hosted: {{ hosted }}</h4>
+                <h4># of Events Joined: {{ joined }}</h4>
+                <h4>Registration Date: {{ user.created_at }}</h4>
+            </div>
+            <form action='/new_show'>
+                <button>Create a TV Party</button>
+            </form>
+            <h1>Your Upcoming Events</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>When</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for event in yourEvents %}
+                        <th>{{ event.title }}</th>
+                        <th>{{ event.location }}</th>
+                        <th>{{ event.time }}</th>
+                        <th><a href='/movies/{{ event.id }}'>View</a> | <a href=''>Edit</a></th>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

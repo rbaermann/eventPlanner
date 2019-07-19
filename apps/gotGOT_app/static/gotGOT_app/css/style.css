@@ -1,0 +1,15 @@
+.wrapper {
+    width: 970px;
+    margin: auto;
+}
+
+.reg {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.login {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 100px;
+}

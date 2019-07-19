@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        {% load static %}
+        <link rel='stylesheet' href='{% static "gotGOT_app/css/movies.css" %}'>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1 class="title">Got GOT?</h1>
+            <a href='/dashboard'>Dashboard</a>
+            <a href='/shows'>Upcoming Shows</a>
+            <a href='/logout'>Logout</a>
+            <h1>{{ show.title }}</h1>
+            <h3>Genre: {{ show.genre }}</h3>
+            <h3>When: {{ show.time }}</h3>
+            <h3>Location: {{ show.location }}</h3>
+            <h1>Attendees:</h1>
+            {% for j in joiners %}
+            <p>{{ j.first_name }} {{ j.last_name }}</p>
+            {% endfor %}
+            {% if request.session.user == show.hosts.id %}
+            <form action='/shows/delete/{{show.id}}' method='POST'>
+                {% csrf_token %}
+                <button>Delete Event</button>
+            </form>
+            {% else %}
+            <form action='/shows/{{show.id}}' method='POST'>
+                {% csrf_token %}
+                <button>Join Event</button>
+            </form>
+            {% endif %}
+        </div>
+    </body>
+</html>
